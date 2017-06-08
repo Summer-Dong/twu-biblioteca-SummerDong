@@ -30,7 +30,8 @@ public class BibliotecaApp {
   private Options[] options = new Options[] {
     new Options("B_L","Book List"),
     new Options("Q_S","Quit System"),
-    new Options("C_B","Checkout Book")
+    new Options("C_B","Checkout Book"),
+    new Options("R_B","Return Book")
   };
 
   public Books[] getBooks() {
@@ -81,6 +82,12 @@ public class BibliotecaApp {
         else
           System.out.println("That book is not available.");
         continue;
+      }else if (command.equals("R_B")){
+        if (biblioteca.returnBook())
+          System.out.println("Thank you! Enjoy the book");
+        else
+          System.out.println("That book is not available.");
+        continue;
       }else{
         System.out.printf("%s",command);
         continue;
@@ -94,6 +101,18 @@ public class BibliotecaApp {
     for (int i=0;i<books.length;i++){
       if (books[i].getTitle().equals(bookTitle) && books[i].getIsAvailable()){
         books[i].setAvailable(false);
+        return true;
+      }
+    }
+    return false;
+  }
+
+  public boolean returnBook(){
+    Scanner scan = new Scanner(System.in);
+    String bookTitle = scan.nextLine();
+    for (int i=0;i<books.length;i++){
+      if (books[i].getTitle().equals(bookTitle) && !(books[i].getIsAvailable())){
+        books[i].setAvailable(true);
         return true;
       }
     }

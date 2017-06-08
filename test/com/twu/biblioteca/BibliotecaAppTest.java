@@ -9,6 +9,16 @@ import static org.junit.Assert.*;
  * Created by summer on 2017/6/7.
  */
 public class BibliotecaAppTest {
+  @Test
+  public void returnBookTest() throws Exception {
+    BibliotecaApp self = new BibliotecaApp();
+    self.books[0].setAvailable(false);
+    self.books[1].setAvailable(false);
+    self.books[2].setAvailable(false);
+    self.books[3].setAvailable(false);
+    assertEquals("Half of a Yellow Sun,Chimamanda Ngozi Adichie,2006."+"\n",self.getBooksDetails());
+  }
+
   BibliotecaApp bibliotecaApp = new BibliotecaApp();
   public Books[] books = new Books[]{
     new Books("The House of Morgan", "Ron Chernow", 1990, true),
@@ -18,7 +28,7 @@ public class BibliotecaAppTest {
     new Books("Half of a Yellow Sun", "Chimamanda Ngozi Adichie", 2006, true)
   };
   @Test
-  public void checkOutBook() throws Exception {
+  public void checkOutBookTest() throws Exception {
     BibliotecaApp self = new BibliotecaApp();
     self.books[0].setAvailable(false);
     self.books[1].setAvailable(false);
@@ -44,7 +54,8 @@ public class BibliotecaAppTest {
   private Options[] options = new Options[]{
     new Options("B_L", "Book List"),
     new Options("Q_S","Quit System"),
-    new Options("C_B","Checkout Book")
+    new Options("C_B","Checkout Book"),
+    new Options("R_B","Return Book")
   };
 
   @Test
