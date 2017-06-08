@@ -13,7 +13,7 @@ public class BibliotecaApp {
 
   //welcome msg
   public void getWelcomeMsg() {
-    System.out.println("Welcome to Biblioteca!");
+    System.out.println("Welcome to Biblioteca!"+"\n");
   }
 
   //book list
@@ -38,7 +38,7 @@ public class BibliotecaApp {
     String bookDetails="";
     for(int i=0;i<books.length;i++){
       if(books[i].checkIsAvailable())
-      bookDetails = bookDetails + books[i].getDetails() + '\n';
+        bookDetails = bookDetails + books[i].getDetails() + '\n';
     }
     return bookDetails;
   }
@@ -67,28 +67,29 @@ public class BibliotecaApp {
   //respond to menu selection
   public void checkOption(){
     BibliotecaApp biblioteca = new BibliotecaApp();
-    while(true){
-      String command = biblioteca.getMenuCheck();
-      if (command.equals("Q_S")){
-        System.out.println("You have quit the system.Thank you!");
-        break;
-      }else if (command.equals("B_L")){
-        System.out.printf("%s",biblioteca.getBooksDetails());
-        continue;
-      }else if (command.equals("C_B")){
-        if (biblioteca.checkOutBook())
-          System.out.println("Thank you! Enjoy the book");
-        else
-          System.out.println("That book is not available.");
-        continue;
-      }else if(command.equals("R_B")){
-        if (biblioteca.returnBook())
-          System.out.println("Thank you for returning the book.");
-        else
-          System.out.println("That is not a valid book to return.");
-        continue;
-      }
-    }
+
+     while(true){
+       String command = biblioteca.getMenuCheck();
+       if (command.equals("Q_S")){
+         System.out.println("You have quit the system.Thank you!");
+         break;
+       }else if (command.equals("B_L")){
+         System.out.print(biblioteca.getBooksDetails());
+         continue;
+       }else if (command.equals("C_B")){
+         if (biblioteca.checkOutBook())
+           System.out.println("Thank you! Enjoy the book");
+         else
+           System.out.println("That book is not available.");
+         continue;
+       }else if(command.equals("R_B")){
+         if (biblioteca.returnBook())
+           System.out.println("Thank you for returning the book.");
+         else
+           System.out.println("That is not a valid book to return.");
+         continue;
+       }
+     }
   }
 
   //checkOutBook

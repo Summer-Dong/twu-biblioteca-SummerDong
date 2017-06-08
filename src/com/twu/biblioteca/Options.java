@@ -16,10 +16,6 @@ public class Options {
     return command;
   }
 
-  public String getOptionDescription(){
-    return description;
-  }
-
   public String getOptionDetail(){
     return command + " :  " + description + '\n';
   }
