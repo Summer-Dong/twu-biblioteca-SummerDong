@@ -22,6 +22,10 @@ public class BibliotecaApp {
     new Books("Half of a Yellow Sun", "Chimamanda Ngozi Adichie", 2006)
   };
 
+  private Options[] options = new Options[] {
+    new Options("B_L","Book List")
+  };
+
   public Books[] getBooks() {
     return books;
   }
@@ -33,7 +37,11 @@ public class BibliotecaApp {
     return bookDetails;
   }
   //main menu
-  public String mainMenu(){
-
+  public String getMainMenu(){
+    String option="";
+    for (int i=0;i<options.length;i++){
+      option = option + options[i].getOptionDetail()+ '\n';
+    }
+    return option;
   }
 }
