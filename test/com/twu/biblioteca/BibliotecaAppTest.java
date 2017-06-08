@@ -9,6 +9,10 @@ import static org.junit.Assert.*;
  */
 public class BibliotecaAppTest {
   @Test
+  public void mainMenu() throws Exception {
+  }
+
+  @Test
   public void getBooksDetails() throws Exception {
     String bookDetails="";
     for(int i=0;i<books.length;i++){
@@ -26,12 +30,11 @@ public class BibliotecaAppTest {
     new Books("Half of a Yellow Sun", "Chimamanda Ngozi Adichie", 2006)
   };
 
-  //welcome msg test
   @Test
   public void getWelcomeMsg() throws Exception {
     assertEquals("Welcome to Biblioteca!", bibliotecaApp.getWelcomeMsg());
   }
-  //show booklist test
+  
   @Test
   public void getBooks() throws Exception {
     assertThat(bibliotecaApp.getBooks(), new SamePropertyValuesAs(books));

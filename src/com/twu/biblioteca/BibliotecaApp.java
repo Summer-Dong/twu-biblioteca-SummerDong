@@ -32,4 +32,8 @@ public class BibliotecaApp {
     }
     return bookDetails;
   }
+  //main menu
+  public String mainMenu(){
+
+  }
 }
