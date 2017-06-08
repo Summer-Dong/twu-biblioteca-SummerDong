@@ -24,7 +24,10 @@ public class BibliotecaAppTest {
     new Options("B_L", "Book List"),
     new Options("Q_S","Quit System"),
     new Options("C_B","Checkout Book"),
-    new Options("R_B","Return Book")
+    new Options("R_B","Return Book"),
+    new Options("M_L","Movie List"),
+    new Options("C_M","Checkout Movie"),
+    new Options("R_M","Return Movie"),
   };
 
   @Test
