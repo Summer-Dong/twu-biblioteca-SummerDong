@@ -21,6 +21,6 @@ public class Options {
   }
 
   public String getOptionDetail(){
-    return symbol + ":" + description + '\n';
+    return symbol + " :  " + description + '\n';
   }
 }

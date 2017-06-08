@@ -5,13 +5,16 @@ import java.util.Scanner;
 public class BibliotecaApp {
 
   public static void main(String[] args) {
-    System.out.println("Hello, world!");
+    BibliotecaApp biblioteca = new BibliotecaApp();
+    biblioteca.getWelcomeMsg();
+    biblioteca.getMainMenu();
+    biblioteca.checkOption();
   }
 
   //welcome msg
   private String welcomeMsg = "Welcome to Biblioteca!";
-
   public String getWelcomeMsg() {
+    System.out.println(welcomeMsg+"\n");
     return welcomeMsg;
   }
 
@@ -25,12 +28,14 @@ public class BibliotecaApp {
   };
 
   private Options[] options = new Options[] {
-    new Options("B_L","Book List")
+    new Options("B_L","Book List"),
+    new Options("Q_S","Quit System")
   };
 
   public Books[] getBooks() {
     return books;
   }
+
   public String getBooksDetails(){
     String bookDetails="";
     for(int i=0;i<books.length;i++){
@@ -42,8 +47,9 @@ public class BibliotecaApp {
   public String getMainMenu(){
     String option="";
     for (int i=0;i<options.length;i++){
-      option = option + options[i].getOptionDetail()+ '\n';
+      option = option + options[i].getOptionDetail();
     }
+    System.out.print(option);
     return option;
   }
 
@@ -56,4 +62,23 @@ public class BibliotecaApp {
     }
     return "You have select an invalid option!";
   }
+
+  public void checkOption(){
+    BibliotecaApp biblioteca = new BibliotecaApp();
+    while(true){
+      String command = biblioteca.getMenuCheck();
+      if (command.equals("Q_S")){
+        System.out.println("You have quit the system.Thank you!");
+        break;
+      }else if (command.equals("B_L")){
+        System.out.printf("%s",biblioteca.getBooksDetails());
+        continue;
+      }else{
+        System.out.printf("%s",command);
+        continue;
+      }
+    }
+  }
+
+
 }
