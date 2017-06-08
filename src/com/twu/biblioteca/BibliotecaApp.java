@@ -19,17 +19,18 @@ public class BibliotecaApp {
   }
 
   //book list
-  private Books[] books = new Books[]{
-    new Books("The House of Morgan", "Ron Chernow", 1990),
-    new Books("Billy Lynn's Long Halftime Walk", "Ben Fountain ", 2012),
-    new Books("White Teeth", "Zadie Smith", 2000),
-    new Books("Atonement", "Ian McEwan", 2001),
-    new Books("Half of a Yellow Sun", "Chimamanda Ngozi Adichie", 2006)
+  public Books[] books = new Books[]{
+    new Books("The House of Morgan", "Ron Chernow", 1990, true),
+    new Books("Billy Lynn's Long Halftime Walk", "Ben Fountain ", 2012, true),
+    new Books("White Teeth", "Zadie Smith", 2000, true),
+    new Books("Atonement", "Ian McEwan", 2001, true),
+    new Books("Half of a Yellow Sun", "Chimamanda Ngozi Adichie", 2006, true)
   };
 
   private Options[] options = new Options[] {
     new Options("B_L","Book List"),
-    new Options("Q_S","Quit System")
+    new Options("Q_S","Quit System"),
+    new Options("C_B","Checkout Book")
   };
 
   public Books[] getBooks() {
@@ -39,6 +40,7 @@ public class BibliotecaApp {
   public String getBooksDetails(){
     String bookDetails="";
     for(int i=0;i<books.length;i++){
+      if(books[i].getIsAvailable())
       bookDetails = bookDetails + books[i].getDetails() + '\n';
     }
     return bookDetails;
@@ -73,6 +75,12 @@ public class BibliotecaApp {
       }else if (command.equals("B_L")){
         System.out.printf("%s",biblioteca.getBooksDetails());
         continue;
+      }else if (command.equals("C_B")){
+        if (biblioteca.checkOutBook())
+          System.out.println("You have checked out the book successfully! Enjoy the book");
+        else
+          System.out.println("That book is not available.");
+        continue;
       }else{
         System.out.printf("%s",command);
         continue;
@@ -80,5 +88,15 @@ public class BibliotecaApp {
     }
   }
 
-
+  public boolean checkOutBook(){
+    Scanner scan = new Scanner(System.in);
+    String bookTitle = scan.nextLine();
+    for (int i=0;i<books.length;i++){
+      if (books[i].getTitle().equals(bookTitle) && books[i].getIsAvailable()){
+        books[i].setAvailable(false);
+        return true;
+      }
+    }
+    return false;
+  }
 }
