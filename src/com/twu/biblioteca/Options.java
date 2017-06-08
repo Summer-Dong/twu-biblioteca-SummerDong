@@ -4,16 +4,16 @@ package com.twu.biblioteca;
  * Created by summer on 2017/6/8.
  */
 public class Options {
-  private String symbol;
+  private String command;
   private String description;
 
-  public Options (String symbol,String description){
-    this.symbol=symbol;
+  public Options (String command,String description){
+    this.command=command;
     this.description=description;
   }
 
-  public String getOptionSymbol(){
-    return symbol;
+  public String getOptionCommand(){
+    return command;
   }
 
   public String getOptionDescription(){
@@ -21,6 +21,6 @@ public class Options {
   }
 
   public String getOptionDetail(){
-    return symbol + " :  " + description + '\n';
+    return command + " :  " + description + '\n';
   }
 }
