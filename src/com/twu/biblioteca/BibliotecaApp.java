@@ -1,5 +1,7 @@
 package com.twu.biblioteca;
 
+import java.util.Scanner;
+
 public class BibliotecaApp {
 
   public static void main(String[] args) {
@@ -43,5 +45,15 @@ public class BibliotecaApp {
       option = option + options[i].getOptionDetail()+ '\n';
     }
     return option;
+  }
+
+  public String getMenuCheck(){
+    Scanner scan = new Scanner(System.in);
+    String option = scan.next().substring(0, 3);
+    for (int i=0;i<options.length;i++){
+      if(option.equals(options[i].getOptionSymbol()))
+        return option;
+    }
+    return "You have select an invalid option!";
   }
 }

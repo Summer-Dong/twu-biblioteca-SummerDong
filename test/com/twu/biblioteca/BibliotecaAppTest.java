@@ -2,13 +2,27 @@ package com.twu.biblioteca;
 
 import org.junit.Test;
 import org.hamcrest.beans.SamePropertyValuesAs;
-
+import java.io.ByteArrayInputStream;
 import static org.junit.Assert.*;
 
 /**
  * Created by summer on 2017/6/7.
  */
 public class BibliotecaAppTest {
+  @Test
+  public void invalidMenuCheckTest() throws Exception{
+    ByteArrayInputStream in = new ByteArrayInputStream("N_M\n".getBytes());
+    System.setIn(in);
+    assertEquals("You have select an invalid option!",bibliotecaApp.getMenuCheck());
+  }
+
+  @Test
+  public void validMenuCheckTest() throws Exception{
+    ByteArrayInputStream in = new ByteArrayInputStream("B_L\n".getBytes());
+    System.setIn(in);
+    assertEquals("B_L",bibliotecaApp.getMenuCheck());
+  }
+
   private Options[] options = new Options[]{
     new Options("B_L", "Book List")
   };
