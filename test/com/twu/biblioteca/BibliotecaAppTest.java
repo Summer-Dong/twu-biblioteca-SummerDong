@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
 public class BibliotecaAppTest {
 
   BibliotecaApp bibliotecaApp = new BibliotecaApp();
-  
+
   public Books[] books = new Books[]{
     new Books("The House of Morgan", "Ron Chernow", 1990, true),
     new Books("Billy Lynn's Long Halftime Walk", "Ben Fountain ", 2012, true),
@@ -28,65 +28,80 @@ public class BibliotecaAppTest {
   };
 
   @Test
-  public void returnBookTest() throws Exception {
+  public void should_show_return_Book() throws Exception {
+    //Given
     BibliotecaApp self = new BibliotecaApp();
+    //When
     self.books[0].setAvailable(false);
     self.books[1].setAvailable(false);
     self.books[2].setAvailable(false);
     self.books[3].setAvailable(false);
+    //Then
     assertEquals("Half of a Yellow Sun,Chimamanda Ngozi Adichie,2006."+"\n",self.getBooksDetails());
   }
 
   @Test
-  public void checkOutBookTest() throws Exception {
+  public void should_hide_checkout_book() throws Exception {
+    //Given
     BibliotecaApp self = new BibliotecaApp();
+    //When
     self.books[0].setAvailable(false);
     self.books[1].setAvailable(false);
     self.books[2].setAvailable(false);
     self.books[3].setAvailable(false);
+    //Then
     assertEquals("Half of a Yellow Sun,Chimamanda Ngozi Adichie,2006."+"\n",self.getBooksDetails());
   }
 
   @Test
-  public void invalidMenuCheckTest() throws Exception{
+  public void should_show_invalid_msg() throws Exception{
+    //Given
     ByteArrayInputStream in = new ByteArrayInputStream("N_M\n".getBytes());
+    //When
     System.setIn(in);
+    //Then
     assertEquals("You have select an invalid option!",bibliotecaApp.getMenuCheck());
   }
 
   @Test
-  public void validMenuCheckTest() throws Exception{
+  public void should_show_valid_menuInfo() throws Exception{
+    //Given
     ByteArrayInputStream in = new ByteArrayInputStream("B_L\n".getBytes());
+    //When
     System.setIn(in);
+    //Then
     assertEquals("B_L",bibliotecaApp.getMenuCheck());
   }
 
   @Test
-  public void getMainMenuTest() throws Exception {
+  public void should_get_main_menu() throws Exception {
+    //Given
     String option="";
     for (int i=0;i<options.length;i++){
       option = option + options[i].getOptionDetail();
     }
-    System.out.print(option);
+    //Then
     assertEquals(option, bibliotecaApp.getMainMenu());
   }
 
   @Test
-  public void getBooksDetailsTest() throws Exception {
+  public void should_get_books_details() throws Exception {
+    //Given
     String bookDetails = "";
     for (int i = 0; i < books.length; i++) {
       bookDetails = bookDetails + books[i].getDetails() + '\n';
     }
+    //Then
     assertEquals(bookDetails, bibliotecaApp.getBooksDetails());
   }
 
   @Test
-  public void getWelcomeMsgTest() throws Exception {
+  public void should_get_welcome_msg() throws Exception {
     assertEquals("Welcome to Biblioteca!", bibliotecaApp.getWelcomeMsg());
   }
 
   @Test
-  public void getBooksTest() throws Exception {
+  public void should_get_books() throws Exception {
     assertThat(bibliotecaApp.getBooks(), new SamePropertyValuesAs(books));
   }
 }
