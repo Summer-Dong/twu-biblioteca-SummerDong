@@ -27,6 +27,6 @@ public class Books {
   }
 
   public String getDetails(){
-    return getTitle()+','+getAuthor()+','+getYear();
+    return getTitle()+','+getAuthor()+','+getYear()+'.';
   }
 }

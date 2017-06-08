@@ -8,6 +8,15 @@ import static org.junit.Assert.*;
  * Created by summer on 2017/6/7.
  */
 public class BibliotecaAppTest {
+  @Test
+  public void getBooksDetails() throws Exception {
+    String bookDetails="";
+    for(int i=0;i<books.length;i++){
+      bookDetails = bookDetails + books[i].getDetails() + '\n';
+    }
+    assertEquals(bookDetails,bibliotecaApp.getBooksDetails());
+  }
+
   BibliotecaApp bibliotecaApp = new BibliotecaApp();
   private Books[] books = new Books[]{
     new Books("The House of Morgan", "Ron Chernow", 1990),

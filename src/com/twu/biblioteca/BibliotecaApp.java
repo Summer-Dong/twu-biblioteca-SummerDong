@@ -25,4 +25,11 @@ public class BibliotecaApp {
   public Books[] getBooks() {
     return books;
   }
+  public String getBooksDetails(){
+    String bookDetails="";
+    for(int i=0;i<books.length;i++){
+      bookDetails = bookDetails + books[i].getDetails() + '\n';
+    }
+    return bookDetails;
+  }
 }
