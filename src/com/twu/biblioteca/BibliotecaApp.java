@@ -27,6 +27,7 @@ public class BibliotecaApp {
     new Books("Half of a Yellow Sun", "Chimamanda Ngozi Adichie", 2006, true)
   };
 
+  //options
   private Options[] options = new Options[] {
     new Options("B_L","Book List"),
     new Options("Q_S","Quit System"),
@@ -34,10 +35,12 @@ public class BibliotecaApp {
     new Options("R_B","Return Book")
   };
 
+  //getbooks
   public Books[] getBooks() {
     return books;
   }
 
+  //getBooksDetails
   public String getBooksDetails(){
     String bookDetails="";
     for(int i=0;i<books.length;i++){
@@ -46,6 +49,7 @@ public class BibliotecaApp {
     }
     return bookDetails;
   }
+
   //main menu
   public String getMainMenu(){
     String option="";
@@ -56,6 +60,7 @@ public class BibliotecaApp {
     return option;
   }
 
+  //check menu
   public String getMenuCheck(){
     Scanner scan = new Scanner(System.in);
     String option = scan.next().substring(0, 3);
@@ -66,6 +71,7 @@ public class BibliotecaApp {
     return "You have select an invalid option!";
   }
 
+  //respond to menu selection
   public void checkOption(){
     BibliotecaApp biblioteca = new BibliotecaApp();
     while(true){
@@ -95,6 +101,7 @@ public class BibliotecaApp {
     }
   }
 
+  //checkOutBook
   public boolean checkOutBook(){
     Scanner scan = new Scanner(System.in);
     String bookTitle = scan.nextLine();
@@ -107,6 +114,7 @@ public class BibliotecaApp {
     return false;
   }
 
+  //returnBook
   public boolean returnBook(){
     Scanner scan = new Scanner(System.in);
     String bookTitle = scan.nextLine();

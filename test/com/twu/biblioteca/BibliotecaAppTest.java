@@ -9,6 +9,24 @@ import static org.junit.Assert.*;
  * Created by summer on 2017/6/7.
  */
 public class BibliotecaAppTest {
+
+  BibliotecaApp bibliotecaApp = new BibliotecaApp();
+  
+  public Books[] books = new Books[]{
+    new Books("The House of Morgan", "Ron Chernow", 1990, true),
+    new Books("Billy Lynn's Long Halftime Walk", "Ben Fountain ", 2012, true),
+    new Books("White Teeth", "Zadie Smith", 2000, true),
+    new Books("Atonement", "Ian McEwan", 2001, true),
+    new Books("Half of a Yellow Sun", "Chimamanda Ngozi Adichie", 2006, true)
+  };
+
+  private Options[] options = new Options[]{
+    new Options("B_L", "Book List"),
+    new Options("Q_S","Quit System"),
+    new Options("C_B","Checkout Book"),
+    new Options("R_B","Return Book")
+  };
+
   @Test
   public void returnBookTest() throws Exception {
     BibliotecaApp self = new BibliotecaApp();
@@ -19,14 +37,6 @@ public class BibliotecaAppTest {
     assertEquals("Half of a Yellow Sun,Chimamanda Ngozi Adichie,2006."+"\n",self.getBooksDetails());
   }
 
-  BibliotecaApp bibliotecaApp = new BibliotecaApp();
-  public Books[] books = new Books[]{
-    new Books("The House of Morgan", "Ron Chernow", 1990, true),
-    new Books("Billy Lynn's Long Halftime Walk", "Ben Fountain ", 2012, true),
-    new Books("White Teeth", "Zadie Smith", 2000, true),
-    new Books("Atonement", "Ian McEwan", 2001, true),
-    new Books("Half of a Yellow Sun", "Chimamanda Ngozi Adichie", 2006, true)
-  };
   @Test
   public void checkOutBookTest() throws Exception {
     BibliotecaApp self = new BibliotecaApp();
@@ -51,13 +61,6 @@ public class BibliotecaAppTest {
     assertEquals("B_L",bibliotecaApp.getMenuCheck());
   }
 
-  private Options[] options = new Options[]{
-    new Options("B_L", "Book List"),
-    new Options("Q_S","Quit System"),
-    new Options("C_B","Checkout Book"),
-    new Options("R_B","Return Book")
-  };
-
   @Test
   public void getMainMenuTest() throws Exception {
     String option="";
@@ -76,8 +79,6 @@ public class BibliotecaAppTest {
     }
     assertEquals(bookDetails, bibliotecaApp.getBooksDetails());
   }
-
-
 
   @Test
   public void getWelcomeMsgTest() throws Exception {
