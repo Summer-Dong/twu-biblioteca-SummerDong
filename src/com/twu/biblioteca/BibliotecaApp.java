@@ -84,7 +84,7 @@ public class BibliotecaApp {
         continue;
       }else if (command.equals("R_B")){
         if (biblioteca.returnBook())
-          System.out.println("Thank you! Enjoy the book");
+          System.out.println("Thank you!");
         else
           System.out.println("That book is not available.");
         continue;
