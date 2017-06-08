@@ -95,13 +95,4 @@ public class BibliotecaAppTest {
     assertEquals(bookDetails, bibliotecaApp.getBooksDetails());
   }
 
-  @Test
-  public void should_get_welcome_msg() throws Exception {
-    assertEquals("Welcome to Biblioteca!", bibliotecaApp.getWelcomeMsg());
-  }
-
-  @Test
-  public void should_get_books() throws Exception {
-    assertThat(bibliotecaApp.getBooks(), new SamePropertyValuesAs(books));
-  }
 }

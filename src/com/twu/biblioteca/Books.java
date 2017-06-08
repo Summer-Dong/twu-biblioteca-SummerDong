@@ -16,19 +16,11 @@ public class Books {
     this.isAvailable=available;
   }
 
-  public String getTitle(){
-    return title;
-  }
+   public String getTitle(){
+     return title;
+   }
 
-  public String getAuthor(){
-    return author;
-  }
-
-  public int getYear(){
-    return year;
-  }
-
-  public boolean getIsAvailable(){
+  public boolean checkIsAvailable(){
     return isAvailable;
   }
 
@@ -37,6 +29,6 @@ public class Books {
   }
 
   public String getDetails(){
-    return getTitle()+','+getAuthor()+','+getYear()+'.';
+    return title+','+author+','+year+'.';
   }
 }

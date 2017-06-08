@@ -12,10 +12,8 @@ public class BibliotecaApp {
   }
 
   //welcome msg
-  private String welcomeMsg = "Welcome to Biblioteca!";
-  public String getWelcomeMsg() {
-    System.out.println(welcomeMsg+"\n");
-    return welcomeMsg;
+  public void getWelcomeMsg() {
+    System.out.println("Welcome to Biblioteca!");
   }
 
   //book list
@@ -35,16 +33,11 @@ public class BibliotecaApp {
     new Options("R_B","Return Book")
   };
 
-  //getbooks
-  public Books[] getBooks() {
-    return books;
-  }
-
-  //getBooksDetails
+   //getBooksDetails
   public String getBooksDetails(){
     String bookDetails="";
     for(int i=0;i<books.length;i++){
-      if(books[i].getIsAvailable())
+      if(books[i].checkIsAvailable())
       bookDetails = bookDetails + books[i].getDetails() + '\n';
     }
     return bookDetails;
@@ -88,14 +81,11 @@ public class BibliotecaApp {
         else
           System.out.println("That book is not available.");
         continue;
-      }else if (command.equals("R_B")){
+      }else if(command.equals("R_B")){
         if (biblioteca.returnBook())
           System.out.println("Thank you for returning the book.");
         else
           System.out.println("That is not a valid book to return.");
-        continue;
-      }else{
-        System.out.printf("%s",command);
         continue;
       }
     }
@@ -106,7 +96,7 @@ public class BibliotecaApp {
     Scanner scan = new Scanner(System.in);
     String bookTitle = scan.nextLine();
     for (int i=0;i<books.length;i++){
-      if (books[i].getTitle().equals(bookTitle) && books[i].getIsAvailable()){
+      if (books[i].getTitle().equals(bookTitle) && books[i].checkIsAvailable()){
         books[i].setAvailable(false);
         return true;
       }
@@ -119,7 +109,7 @@ public class BibliotecaApp {
     Scanner scan = new Scanner(System.in);
     String bookTitle = scan.nextLine();
     for (int i=0;i<books.length;i++){
-      if (books[i].getTitle().equals(bookTitle) && !(books[i].getIsAvailable())){
+      if (books[i].getTitle().equals(bookTitle) && !(books[i].checkIsAvailable())){
         books[i].setAvailable(true);
         return true;
       }
