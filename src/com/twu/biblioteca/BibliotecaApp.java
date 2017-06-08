@@ -16,6 +16,17 @@ public class BibliotecaApp {
     System.out.println("Welcome to Biblioteca!"+"\n");
   }
 
+  //options
+  private Options[] options = new Options[] {
+    new Options("B_L","Book List"),
+    new Options("Q_S","Quit System"),
+    new Options("C_B","Checkout Book"),
+    new Options("R_B","Return Book"),
+    new Options("M_L","Movie List"),
+    new Options("C_M","Checkout Movie"),
+    new Options("R_M","Return Movie")
+  };
+
   //book list
   public Books[] books = new Books[]{
     new Books("The House of Morgan", "Ron Chernow", 1990, true),
@@ -25,12 +36,12 @@ public class BibliotecaApp {
     new Books("Half of a Yellow Sun", "Chimamanda Ngozi Adichie", 2006, true)
   };
 
-  //options
-  private Options[] options = new Options[] {
-    new Options("B_L","Book List"),
-    new Options("Q_S","Quit System"),
-    new Options("C_B","Checkout Book"),
-    new Options("R_B","Return Book")
+  //movie list
+  public Movies[] movies = new Movies[]{
+    new Movies("Dangal", "Nitesh Tiwari", 2017,"9.2", true),
+    new Movies("The Shawshank Redemption", "Frank Darabont", 1994, "9.6",true),
+    new Movies("Forrest Gump", "Robert Zemeckis", 1994, "9.4", true),
+    new Movies("3 idiots", "拉库马·希拉尼", 2011,"unrated", true)
   };
 
    //getBooksDetails
@@ -41,6 +52,16 @@ public class BibliotecaApp {
         bookDetails = bookDetails + books[i].getDetails() + '\n';
     }
     return bookDetails;
+  }
+
+  //getMovieDetails
+  public String getMoviesDetails(){
+    String movieDetails="";
+    for(int i=0;i<movies.length;i++){
+      if(movies[i].checkIsAvailable())
+        movieDetails = movieDetails + movies[i].getDetails() + '\n';
+    }
+    return movieDetails;
   }
 
   //main menu
@@ -76,17 +97,32 @@ public class BibliotecaApp {
        }else if (command.equals("B_L")){
          System.out.print(biblioteca.getBooksDetails());
          continue;
+       }else if (command.equals("M_L")){
+         System.out.print(biblioteca.getMoviesDetails());
+         continue;
        }else if (command.equals("C_B")){
          if (biblioteca.checkOutBook())
            System.out.println("Thank you! Enjoy the book");
          else
            System.out.println("That book is not available.");
          continue;
+       }else if (command.equals("C_M")){
+         if (biblioteca.checkOutMovie())
+           System.out.println("Thank you! Enjoy the movie");
+         else
+           System.out.println("That movie is not available.");
+         continue;
        }else if(command.equals("R_B")){
          if (biblioteca.returnBook())
            System.out.println("Thank you for returning the book.");
          else
            System.out.println("That is not a valid book to return.");
+         continue;
+       }else if(command.equals("R_M")){
+         if (biblioteca.returnMovie())
+           System.out.println("Thank you for returning the movie.");
+         else
+           System.out.println("That is not a valid movie to return.");
          continue;
        }
      }
@@ -105,6 +141,19 @@ public class BibliotecaApp {
     return false;
   }
 
+  //checkOutMovie
+  public boolean checkOutMovie(){
+    Scanner scan = new Scanner(System.in);
+    String movieName = scan.nextLine();
+    for (int i=0;i<movies.length;i++){
+      if (movies[i].getName().equals(movieName) && movies[i].checkIsAvailable()){
+        movies[i].setAvailable(false);
+        return true;
+      }
+    }
+    return false;
+  }
+
   //returnBook
   public boolean returnBook(){
     Scanner scan = new Scanner(System.in);
@@ -112,6 +161,19 @@ public class BibliotecaApp {
     for (int i=0;i<books.length;i++){
       if (books[i].getTitle().equals(bookTitle) && !(books[i].checkIsAvailable())){
         books[i].setAvailable(true);
+        return true;
+      }
+    }
+    return false;
+  }
+
+  //returnMovie
+  public boolean returnMovie(){
+    Scanner scan = new Scanner(System.in);
+    String movieName = scan.nextLine();
+    for (int i=0;i<movies.length;i++){
+      if (movies[i].getName().equals(movieName) && !(movies[i].checkIsAvailable())){
+        movies[i].setAvailable(true);
         return true;
       }
     }
