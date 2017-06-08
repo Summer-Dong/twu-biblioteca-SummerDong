@@ -86,7 +86,7 @@ public class BibliotecaApp {
         if (biblioteca.returnBook())
           System.out.println("Thank you for returning the book.");
         else
-          System.out.println("That book is not available.");
+          System.out.println("That is not a valid book to return.");
         continue;
       }else{
         System.out.printf("%s",command);
