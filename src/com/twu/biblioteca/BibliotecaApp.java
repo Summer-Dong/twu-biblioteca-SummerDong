@@ -77,7 +77,7 @@ public class BibliotecaApp {
         continue;
       }else if (command.equals("C_B")){
         if (biblioteca.checkOutBook())
-          System.out.println("You have checked out the book successfully! Enjoy the book");
+          System.out.println("Thank you! Enjoy the book");
         else
           System.out.println("That book is not available.");
         continue;
