@@ -7,6 +7,7 @@ public class BibliotecaApp {
   public static void main(String[] args) {
     BibliotecaApp biblioteca = new BibliotecaApp();
     biblioteca.getWelcomeMsg();
+    biblioteca.login();
     biblioteca.getMainMenu();
     biblioteca.checkOption();
   }
@@ -43,6 +44,33 @@ public class BibliotecaApp {
     new Movies("Forrest Gump", "Robert Zemeckis", 1994, "9.4", true),
     new Movies("3 idiots", "拉库马·希拉尼", 2011,"unrated", true)
   };
+
+  //user list
+  public Users[] users = new Users[]{
+    new Users("001-0001", "123456" , "Jason", "Jason@gmail.com","河北省石家庄市裕华路新南街24号", "18713509001"),
+    new Users("001-0001", "123456" , "Jason", "Jason@gmail.com","河北省石家庄市裕华路新南街26号", "18713509003"),
+    new Users("001-0002", "123456" , "Lucy", "Lucy@gmail.com","河北省石家庄市裕华路新南街25号", "18713509002")
+  };
+  //login
+  public boolean login(){
+    System.out.println("Please input your library number and password:"+"\n"+"(use a ',' between the library and pasword)");
+    while(true){
+      Scanner scan = new Scanner(System.in);
+      String input = scan.next();
+      String logNum = input.substring(0,8);
+      String password = input.substring(9, 15);
+      for (int i=0;i<users.length;i++){
+        if (users[i].getLibraryNum().equals(logNum) && users[i].getPassword().equals(password)){
+          System.out.println("Login Successfully!"+"\n"+"Please select the option you need:");
+          return true;
+        } else {
+          System.out.println("Incorrect library number or password, please try again! ");
+          break;
+        }
+      }
+      continue;
+    }
+  }
 
    //getBooksDetails
   public String getBooksDetails(){
