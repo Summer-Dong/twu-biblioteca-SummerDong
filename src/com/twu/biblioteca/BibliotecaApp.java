@@ -4,10 +4,13 @@ import java.util.Scanner;
 
 public class BibliotecaApp {
 
-  public Users nowUser;
+  public static Users nowUser;
 
   public static void main(String[] args) {
     BibliotecaApp biblioteca = new BibliotecaApp();
+    biblioteca.start(biblioteca);
+  }
+  public void start(BibliotecaApp biblioteca){
     biblioteca.getWelcomeMsg();
     biblioteca.login();
     biblioteca.getMainMenu();
@@ -28,30 +31,32 @@ public class BibliotecaApp {
     new Options("M_L","Movie List"),
     new Options("C_M","Checkout Movie"),
     new Options("R_M","Return Movie"),
-    new Options("U_I","User Information")
+    new Options("U_I","User Information"),
+    new Options("C_I","Checked-out Info")
+
   };
 
   //book list
-  public Books[] books = new Books[]{
-    new Books("The House of Morgan", "Ron Chernow", 1990, true),
-    new Books("Billy Lynn's Long Halftime Walk", "Ben Fountain ", 2012, true),
-    new Books("White Teeth", "Zadie Smith", 2000, true),
-    new Books("Atonement", "Ian McEwan", 2001, true),
-    new Books("Half of a Yellow Sun", "Chimamanda Ngozi Adichie", 2006, true)
+  public static Books[] books = new Books[]{
+    new Books("The House of Morgan", "Ron Chernow", 1990, true,"null"),
+    new Books("Billy Lynn's Long Halftime Walk", "Ben Fountain ", 2012, true, "null"),
+    new Books("White Teeth", "Zadie Smith", 2000, true, "null"),
+    new Books("Atonement", "Ian McEwan", 2001, true, "null"),
+    new Books("Half of a Yellow Sun", "Chimamanda Ngozi Adichie", 2006, true, "null")
   };
 
   //movie list
-  public Movies[] movies = new Movies[]{
-    new Movies("Dangal", "Nitesh Tiwari", 2017,"9.2", true),
-    new Movies("The Shawshank Redemption", "Frank Darabont", 1994, "9.6",true),
-    new Movies("Forrest Gump", "Robert Zemeckis", 1994, "9.4", true),
-    new Movies("3 idiots", "拉库马·希拉尼", 2011,"unrated", true)
+  public static Movies[] movies = new Movies[]{
+    new Movies("Dangal", "Nitesh Tiwari", 2017,"9.2", true, "null"),
+    new Movies("The Shawshank Redemption", "Frank Darabont", 1994, "9.6",true, "null"),
+    new Movies("Forrest Gump", "Robert Zemeckis", 1994, "9.4", true, "null"),
+    new Movies("3 idiots", "拉库马·希拉尼", 2011,"unrated", true, "null")
   };
 
   //user list
   public Users[] users = new Users[]{
     new Users("001-0001", "123456" , "Jason", "Jason@gmail.com","18713509001"),
-    new Users("001-0001", "123456" , "Jason", "Jason@gmail.com", "18713509003"),
+    new Users("001-0003", "123456" , "Lily", "Lily@gmail.com", "18713509003"),
     new Users("001-0002", "123456" , "Lucy", "Lucy@gmail.com","18713509002")
   };
   //login
@@ -60,13 +65,15 @@ public class BibliotecaApp {
     while(true){
       Scanner scan = new Scanner(System.in);
       String input = scan.next();
-      String logNum = input.substring(0,8);
-      String password = input.substring(9, 15);
       for (int i=0;i<users.length;i++){
-        if (users[i].getLibraryNum().equals(logNum) && users[i].getPassword().equals(password)){
-          System.out.println("Login Successfully!"+"\n"+"Please select the option you need:");
-          nowUser = users[i];
-          return true;
+        if(input.length() == 15){
+          String logNum = input.substring(0,8);
+          String password = input.substring(9, 15);
+          if (users[i].getLibraryNum().equals(logNum) && users[i].getPassword().equals(password)){
+            System.out.println("Login Successfully!"+"\n"+"Please select the option you need:");
+            nowUser = users[i];
+            return true;
+          }
         } else {
           System.out.println("Incorrect library number or password, please try again! ");
           break;
@@ -124,7 +131,8 @@ public class BibliotecaApp {
      while(true){
        String command = biblioteca.getMenuCheck();
        if (command.equals("Q_S")){
-         System.out.println("You have quit the system.Thank you!");
+         System.out.println("You have quit the system.Thank you!"+"\n");
+         biblioteca.start(biblioteca);
          break;
        }else if (command.equals("B_L")){
          System.out.print(biblioteca.getBooksDetails());
@@ -159,6 +167,16 @@ public class BibliotecaApp {
        }else if (command.equals("U_I")){
          System.out.println(nowUser.getUserInfo());
          continue;
+       }else if (command.equals("C_I")){
+         for (int i=0;i<books.length;i++){
+           if(books[i].checkIsAvailable()==false)
+             System.out.println(books[i].getCheckoutDetails());
+         }
+         for (int i=0;i<movies.length;i++){
+           if(movies[i].checkIsAvailable()==false)
+             System.out.println(movies[i].getCheckoutDetails());
+         }
+         continue;
        }
      }
   }
@@ -170,6 +188,7 @@ public class BibliotecaApp {
     for (int i=0;i<books.length;i++){
       if (books[i].getTitle().equals(bookTitle) && books[i].checkIsAvailable()){
         books[i].setAvailable(false);
+        books[i].setCheckoutUser(nowUser.getUserName());
         return true;
       }
     }
@@ -183,6 +202,7 @@ public class BibliotecaApp {
     for (int i=0;i<movies.length;i++){
       if (movies[i].getName().equals(movieName) && movies[i].checkIsAvailable()){
         movies[i].setAvailable(false);
+        movies[i].setCheckoutUser(nowUser.getUserName());
         return true;
       }
     }

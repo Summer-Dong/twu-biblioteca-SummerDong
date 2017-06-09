@@ -24,7 +24,9 @@ public class Users {
   public String getPassword(){
     return password;
   }
-
+  public String getUserName(){
+    return name;
+  }
   public String getUserInfo(){
     return "Your name:"+name+'\n'+"Your email:"+email+'\n'+"Your phone number:"+phoneNum+'.';
   }

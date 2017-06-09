@@ -9,13 +9,15 @@ public class Movies {
   private int year;
   private String rating;
   private boolean isAvailable;
+  private String checkoutUser;
 
-  public Movies(String name, String director, int year, String rating, boolean available){
+  public Movies(String name, String director, int year, String rating, boolean available, String checkoutUser){
     this.name=name;
     this.director=director;
     this.year=year;
     this.rating=rating;
     this.isAvailable=available;
+    this.checkoutUser=checkoutUser;
   }
 
   public String getName(){
@@ -30,7 +32,15 @@ public class Movies {
     this.isAvailable=available;
   }
 
+  public void setCheckoutUser(String checkoutUser){
+    this.checkoutUser=checkoutUser;
+  }
+
   public String getDetails(){
     return name+','+director+','+year+','+rating+'.';
+  }
+
+  public String getCheckoutDetails(){
+    return name+','+checkoutUser+'.';
   }
 }
