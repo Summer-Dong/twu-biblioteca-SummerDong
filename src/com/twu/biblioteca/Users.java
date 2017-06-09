@@ -8,15 +8,13 @@ public class Users {
   private String password;
   private String name;
   private String email;
-  private String address;
   private String phoneNum;
 
-  public Users(String libraryNum, String password, String name, String email, String address, String phoneNum){
+  public Users(String libraryNum, String password, String name, String email, String phoneNum){
     this.libraryNum=libraryNum;
     this.password=password;
     this.name=name;
     this.email=email;
-    this.address=address;
     this.phoneNum=phoneNum;
   }
 
@@ -28,6 +26,6 @@ public class Users {
   }
 
   public String getUserInfo(){
-    return name+','+email+','+address+','+phoneNum+'.';
+    return "Your name:"+name+'\n'+"Your email:"+email+'\n'+"Your phone number:"+phoneNum+'.';
   }
 }

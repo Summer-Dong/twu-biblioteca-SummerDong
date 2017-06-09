@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 public class BibliotecaApp {
 
+  public Users nowUser;
+
   public static void main(String[] args) {
     BibliotecaApp biblioteca = new BibliotecaApp();
     biblioteca.getWelcomeMsg();
@@ -25,7 +27,8 @@ public class BibliotecaApp {
     new Options("R_B","Return Book"),
     new Options("M_L","Movie List"),
     new Options("C_M","Checkout Movie"),
-    new Options("R_M","Return Movie")
+    new Options("R_M","Return Movie"),
+    new Options("U_I","User Information")
   };
 
   //book list
@@ -47,9 +50,9 @@ public class BibliotecaApp {
 
   //user list
   public Users[] users = new Users[]{
-    new Users("001-0001", "123456" , "Jason", "Jason@gmail.com","河北省石家庄市裕华路新南街24号", "18713509001"),
-    new Users("001-0001", "123456" , "Jason", "Jason@gmail.com","河北省石家庄市裕华路新南街26号", "18713509003"),
-    new Users("001-0002", "123456" , "Lucy", "Lucy@gmail.com","河北省石家庄市裕华路新南街25号", "18713509002")
+    new Users("001-0001", "123456" , "Jason", "Jason@gmail.com","18713509001"),
+    new Users("001-0001", "123456" , "Jason", "Jason@gmail.com", "18713509003"),
+    new Users("001-0002", "123456" , "Lucy", "Lucy@gmail.com","18713509002")
   };
   //login
   public boolean login(){
@@ -62,13 +65,14 @@ public class BibliotecaApp {
       for (int i=0;i<users.length;i++){
         if (users[i].getLibraryNum().equals(logNum) && users[i].getPassword().equals(password)){
           System.out.println("Login Successfully!"+"\n"+"Please select the option you need:");
+          nowUser = users[i];
           return true;
         } else {
           System.out.println("Incorrect library number or password, please try again! ");
           break;
         }
       }
-      continue;  
+      continue;
     }
   }
 
@@ -151,6 +155,9 @@ public class BibliotecaApp {
            System.out.println("Thank you for returning the movie.");
          else
            System.out.println("That is not a valid movie to return.");
+         continue;
+       }else if (command.equals("U_I")){
+         System.out.println(nowUser.getUserInfo());
          continue;
        }
      }
